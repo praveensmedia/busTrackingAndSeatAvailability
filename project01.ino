@@ -27,10 +27,7 @@ void setup()                                              //one time execution c
   pinMode(in,  INPUT);                                    //Counter pin for incoming passengers setting as input
   pinMode(out, INPUT);  //Counter pin for outgoing passengers setting as input (sensors to be connected to these pins)
   lcd.clear();
-  lcd.println("SEATS LEFT:");
-  lcd.setCursor(11,0);                               // sets curser at 11th coloum and 0th row
-  lcd.print(seats);
-  lcd.print("      ");
+  printt();
 }
 
 void loop()                                               //which runs forever
@@ -90,19 +87,24 @@ void loop()                                               //which runs forever
      seatss=(String)seats;                              //converting integer to string
     
      stringThree = String(" \nSeats Available: "+seatss);//
+     
 }
 
 void SendMessage()                                      //to send a message this function will be called
 {
-  Serial.println("AT+CMGF=1");                          //getting into text mode
-  delay(100);
-  sendd=String("AT+CMGS=\"")+replay+String("\"\r");     //assigning the required strings to send a message 
+  Serial.println("AT+CMGF=1"); 
+  delay(1000);//getting into text mode
+  sendd=String("AT+CMGS=\"")+replay+String("\"\r");     //assigning the required strings to send a message
   Serial.println(sendd);                                //the above string will be printed
-  delay(1000);  
+  delay(500);  
   Serial.println(stringFour);                           // The SMS text you want to send 
   delay(100);
   Serial.println((char)26);                             // ASCII code of CTRL+Z to terminate the entering text mode
-  delay(3000);
+  lcd.setCursor(0,1);
+  lcd.print("message sent");
+  delay(4000);
+  lcd.clear();
+  printt();
   temp=0;
   
 }
@@ -114,7 +116,12 @@ void RecieveMessage()                                   //this function called f
 
   temp=2;
 }
- 
+void printt(){
+  lcd.println("SEATS LEFT:");
+  lcd.setCursor(11,0);                               // sets curser at 11th coloum and 0th row
+  lcd.print(seats);
+  lcd.print("      ");
+}
 void serialEvent()                                      //this function is called to check the received message
 {
  while(Serial.available())                              //
@@ -195,4 +202,5 @@ void IN()                                                   //this function is c
     lcd.setCursor(11,0);
     lcd.print(seats);
     delay(450);
+   
 }
