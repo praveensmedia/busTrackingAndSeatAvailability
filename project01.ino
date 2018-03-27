@@ -1,3 +1,4 @@
+//written for Arduino UNO by praveen kumar
 #include <SoftwareSerial.h>                               //To Creat a software Serial communication.
 #include <LiquidCrystal.h>                                //to establish 16x2 lcd connection
 #include <TinyGPS++.h>                                    //this is to encode GPS data
