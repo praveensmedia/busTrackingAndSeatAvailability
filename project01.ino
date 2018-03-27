@@ -95,9 +95,9 @@ void loop()                                               //which runs forever
 void SendMessage()                                      //to send a message this function will be called
 {
   Serial.println("AT+CMGF=1");                          //getting into text mode
-  //sendd=String("AT+CMGS=\"")+replay+String("\"\r");     //assigning the required strings to send a message
-  //Serial.println(sendd);                                //the above string will be printed
-  Serial.println("AT+CMGS=\"+08106005725\"\r");
+  delay(100);
+  sendd=String("AT+CMGS=\"")+replay+String("\"\r");     //assigning the required strings to send a message 
+  Serial.println(sendd);                                //the above string will be printed
   delay(1000);  
   Serial.println(stringFour);                           // The SMS text you want to send 
   delay(100);
