@@ -4,7 +4,7 @@
 #define in    2                                           //defining the pins for the IR sensors
 #define out   3
 char   msg[32],str[100],phh[100];                         //creating charactor arrays 
-int    i=0,x=0,k=0,temp=0,n=0,p=0,b=0;   //creating some integers
+int    i=0,x=0,k=0,temp=0,n=0,p=0,b=0;                    //creating some integers
 String stringOne,stringTwo,stringThree,stringZero;        //creating some strings
 String psw,replay,sendd,stringFour,seatss="20";
  int count=0,seats=20;
@@ -25,7 +25,7 @@ void setup()                                              //one time execution c
   lcd.clear();
   gsm_init();                                             //this initialises the GSM module 
   pinMode(in,  INPUT);                                    //Counter pin for incoming passengers setting as input
-  pinMode(out, INPUT);  //Counter pin for outgoing passengers setting as input (sensors to be connected to these pins)
+  pinMode(out, INPUT);                                    //Counter pin for outgoing passengers setting as input (sensors to be connected to these pins)
   lcd.clear();
   printt();
 }
@@ -117,14 +117,14 @@ void RecieveMessage()                                   //this function called f
   temp=2;
 }
 void printt(){
-  lcd.println("SEATS LEFT:");
-  lcd.setCursor(11,0);                               // sets curser at 11th coloum and 0th row
-  lcd.print(seats);
+  lcd.println("SEATS LEFT:"); 
+  lcd.setCursor(11,0);                                 // sets curser at 11th coloum and 0th row
+  lcd.print(seats); 
   lcd.print("      ");
 }
-void serialEvent()                                      //this function is called to check the received message
+void serialEvent()                                     //this function is called to check the received message
 {
- while(Serial.available())                              //
+ while(Serial.available())                             //
   {
    char ch=(char)Serial.read();                     
    str[i++]=ch;
@@ -181,7 +181,7 @@ void gsm_init()                                           //this function calls 
     }
 }
 void OUT()                                                  //this function is called whenever the outgoing sensor toggled
-{
+{                                                           //this function counts outgoing persons
     count--;
     lcd.clear();
     lcd.println("SEATS LEFT:");
@@ -193,7 +193,7 @@ void OUT()                                                  //this function is c
     delay(450);
 }
 void IN()                                                   //this function is called whenever the incoming sensor toggled
-{
+{                                                           //this function counts incoming persons
     count++;
     lcd.clear();
     lcd.print("SEATS LEFT:");
